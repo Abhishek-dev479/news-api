@@ -1,0 +1,55 @@
+:root {
+    --blue: #45a29e;
+    --black: #0b0c10;
+    --grey: #c5c6c7;
+    --darkblue: #1f2833;
+  }
+  body {
+    font-family: 'Poppins';
+    background-color: var(--blue);
+  }
+  form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 10%;
+    align-items: center;
+    background: var(--darkblue);
+    padding: 3% 3% 5% 3%;
+    border-radius: 7px;
+    color: white;
+  }
+  input {
+    padding: 12px;
+    margin: 3px;
+    width: 80%;
+    border-radius: 5px;
+    border: 0px;
+  }
+  input:focus{
+    outline:none;
+  }
+  h1 {
+    margin: auto;
+  }
+  input[type="submit"] {
+    border: 0px;
+    background-color: var(--blue);
+    color: white;
+    padding: 10px;
+    width: 87%;
+    margin-bottom: 10px;
+  }
+  input[type="submit"]:hover{
+    cursor: pointer;
+  }
+
+  a{
+    color: var(--blue);
+  }
+  p, a{
+    display: inline;
+    margin: 5px;
+  }
+

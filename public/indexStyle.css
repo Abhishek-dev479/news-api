@@ -1,0 +1,121 @@
+:root{
+  --blue: #45A29E;
+  --black: #0B0C10;
+  --grey: #C5C6C7;
+  --darkblue: #1F2833;
+}
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0px;
+  background-color: var(--blue);
+  font-family: 'Poppins', sans-serif;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+img{
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden;
+}
+#image {
+  width: 100%;
+  height: 180px;
+}
+img:hover{
+  filter: brightness(50%);
+}
+.articles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--darkblue);
+  height: 25rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.articles:hover{
+  background-color: #3f2988;
+  cursor: pointer;
+  transform: scale(1.08);
+}
+.title {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 5%;
+  font-size: small;
+}
+#box {
+  padding-top: 7px;
+  /* margin: 3px; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 10px;
+  column-gap: 10px;
+  width: 100%;
+  margin: auto;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--blue);
+  color: white;
+  padding: 10px;
+}
+
+#navbar input, #navbar button{
+  padding: 9px;
+  margin: 5px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.bookmark-btn{
+  cursor: pointer;
+}
+.icon{
+  color: red;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.filter-dropdown{
+  display: none;
+}
+.dropdown-view{
+  display: flex;
+}
+
+form{
+  display: flex;
+
+}
+#navbar{
+  padding: 10px 8px 10px 8px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: var(--darkblue);
+  border-radius: 5px;
+}
+#navbar button:hover{
+  cursor: pointer;
+  background-color: var(--blue);
+}
+#sortBy{
+  margin-top: 5px;
+  height: 34px;
+}
+#bookmark{
+  background-color: #45A29E;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Times Of World - Daily News</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Red+Hat+Text:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="indexStyle.css">
+  <body>
+    <div id="container">
+      <div id="navbar">
+      <form action="/" method="post">
+        <input
+          type="text"
+          name="keyword"
+          id="keyword"
+          placeholder="Search by keyword"
+        />
+        <button type="submit" id="submit">Search</button>
+        <button class="filter">Filters</button>
+        <div class="filter-dropdown">
+          <input type="date" name="fromDate" id="fromDate" placeholder="From"/>
+          <input type="date" name="toDate" id="toDate" placeholder="To"/>
+          <select name="sortBy" id="sortBy">
+            <option value="">Sort By</option>
+            <option value="relevancy">Relevancy</option>
+            <option value="popularity">Popularity</option>
+            <option value="publishedAt">PublishedAt</option>
+          </select>
+        </div>
+      </form>
+      <div>
+      <a href="/bookmarks"><button id="bookmark">Bookmarks</button></a>
+      <% if(name){ %>
+        <button id="profile"><%= name %></button>
+      <% } else{ %>
+        <a href="/login"><button>Login/signup</button></a>
+      <% } %>
+    </div>
+  </div>
+    <div id="box">
+      <% for(let i=0; i< data.length; i++){ %>
+      <a href="<%= data[i].url %>">
+        <div id="articles<%= i %>" class="articles">
+          <div id="image">
+            <img src="<%= data[i].urlToImage ? data[i].urlToImage : 'https://www.quantumbalancing.com/images/News2.gif' %>" class="images" loading="lazy"/>
+            <span class="icon">
+              <i class="fa-solid fa-bookmark bookmark-btn" style="color: #ff0000;"></i>
+            </span>
+          </div>
+          <div class="title">
+            <h3><%= data[i].title %></h3>
+            <% if (data[i].description && data[i].title) { %>
+              <%= data[i].description.substring(0, 200 - data[i].title.length) %>....
+            <% } %>
+          </div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+  </div>
+    <script>
+      let bookmarkButtons = document.getElementsByClassName("bookmark-btn");
+      let articles = document.getElementsByClassName('articles');
+      let images = document.getElementsByClassName('images');
+      let filter = document.getElementsByClassName('filter')[0];
+      let filterDropdown = document.getElementsByClassName('filter-dropdown')[0];
+      let profile = document.getElementById('profile');
+
+      Array.from(bookmarkButtons).forEach(function (e, i) {
+        e.addEventListener("click", function (event) {
+          console.log('hello');
+          event.preventDefault();
+          bookmark(i);
+        });
+      });
+
+      function bookmark(i) {
+        fetch("/bookmark/" + i, { method: "GET" });
+      } 
+
+      filter.addEventListener('click', function(){
+        filterDropdown.classList.toggle('dropdown-view');
+      })
+
+      profile.addEventListener('click', function(){
+        console.log('logout clicked...');
+        let a = confirm('Would you like to logout?');
+        console.log('logout: '+a)
+        if(a){
+          console.log('fetch logout');
+          fetch('/logout')
+          .then((res) => {
+            location.reload();
+          })
+        }
+      });
+    </script>
+  </body>
+</html>
