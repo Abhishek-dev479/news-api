@@ -3,7 +3,6 @@ const {User, Bookmark} = require('./mongoose');
 // const fetch = import('node-fetch').then(module => module.default);
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const { render } = require('ejs');
 
 let data = [];
 const secretKey = 'Hello this is abhishek';
