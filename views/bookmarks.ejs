@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times Of World - Bookmarks</title>
+    <link rel="stylesheet" href="indexStyle.css">
+    <style>
+    :root{
+        --blue: #45A29E;
+        --black: #0B0C10;
+        --grey: #C5C6C7;
+        --darkblue: #1F2833;
+      }
+      body{
+        padding: 5px;
+      }
+      .articles{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      button{
+        padding: 9px;
+        cursor: pointer;
+        background-color: red;
+        border: 0;
+        color: white;
+      }
+
+      .articles:hover{
+        background-color: var(--darkblue);
+        transform: scale(1);
+      }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <% for(let i=data.length-1; i>0; i--){ %>
+          <div id="articles<%= i %>" class="articles">
+        <a href="<%= data[i].url %>">
+            <div id="image">
+              <img src="<%= data[i].urlToImage ? data[i].urlToImage : 'https://www.quantumbalancing.com/images/News2.gif' %>" class="images"/>
+            </div>
+            <div class="title">
+              <h3><%= data[i].title %></h3>
+              <!-- <button class="bookmark-btn">Bookmark</button> -->
+            </div>
+        </a>
+        <button class="removeButton">Remove</button>
+      </div>
+        <% } %>
+      </div>
+
+    <script>
+        let remove = document.getElementsByClassName('removeButton');
+        Array.from(remove).forEach((e, i) => {
+            e.addEventListener('click', function(event){
+                fetch('bookmarks/remove/'+(remove.length - i), {method: 'GET'})
+                .then((res) => {
+                    res.json();
+                })
+                .then((res) => {
+                    location.reload();
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
